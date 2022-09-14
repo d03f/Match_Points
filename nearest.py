@@ -26,3 +26,8 @@ def nearestBrute_route(points):
         order.append(next)
     return order
 
+
+#? How to
+#points = [(2, 3), (-8, -9), (10, 11)]
+#start = [(0,0)]
+#route = nearestBrute_route(start + points)
