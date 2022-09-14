@@ -37,7 +37,7 @@ def ordenRoute():
         y_dist = y[0] - y[1] if y[0] - y[1] > 0 else (y[0] - y[1]) * -1
         distance += x_dist + y_dist
 
-        lab_distance.config(text=f"Disntancia = {distance}")
+    lab_distance.config(text=f"Distancia = {distance}")
 
 def nearestRoute():
     distance = 0
@@ -55,6 +55,14 @@ def nearestRoute():
 
 
     canvas.create_line(points[-1], NearestRoute_order[-1], tags="linea")
+
+    #! Por que la distancia varia dependiendo del modo con el mismo recorrido
+
+    x_dist = points[-1][0] - NearestRoute_order[-1][0] if points[-1][0] - NearestRoute_order[-1][0] > 0 else (points[-1][0] - NearestRoute_order[-1][0]) * -1
+    y_dist = points[-1][1] - NearestRoute_order[-1][1] if points[-1][1] - NearestRoute_order[-1][1] > 0 else (points[-1][1] - NearestRoute_order[-1][1]) * -1
+    print(y_dist, x_dist)
+    print(y_dist + x_dist)
+    distance += x_dist + y_dist
 
 
     lab_distance.config(text=f"Distancia = {distance}")
