@@ -3,7 +3,6 @@ import nearest
 
 
 #**Variables
-
 ordenPoints = []
 tam_circl = 10
 
@@ -16,35 +15,74 @@ def draw_circle(event):
         canvas.create_oval(x, y, x+tam_circl, y+tam_circl, fill="red")
         canvas.create_text(x+2, y+tam_circl+5, text="Start", fill="black", font=('Helvetica 10 bold'))
 
-    else:canvas.create_oval(x, y, x+tam_circl, y+tam_circl).tag_add('last')
+    else:
+        canvas.delete("end")
+        canvas.create_oval(x, y, x+tam_circl, y+tam_circl)
+        canvas.create_oval(x, y, x+tam_circl, y+tam_circl, fill="blue", tags="end")
+        canvas.create_text(x+2, y+tam_circl+5, text="End", fill="black", font=('Helvetica 10 bold'), tags="end")
 
     ordenPoints.append((x+tam_circl/2, y+tam_circl/2))
 
 def ordenRoute():
-    for i in range(len(ordenPoints) -1):
-        x1 = ordenPoints[i]; y1 = ordenPoints[i+1]
-        x2 = ordenPoints[i]; y2 = ordenPoints[i]
+    canvas.delete("linea")
 
-        canvas.create_line(x1, y1, x2, y2)
+    for i in range(len(ordenPoints) -1):
+        x = ordenPoints[i]; y = ordenPoints[i+1]
+        canvas.create_line(x, y, tags="linea")
+
+        x_dist = x[0] - x[1] if x[0] - x[1] > 0 else (x[0] - x[1]) * -1
+        y_dist = y[0] - y[1] if y[0] - y[1] > 0 else (y[0] - y[1]) * -1
+        distance = x_dist + y_dist
+
+        lab_distance.config(text=f"Disntancia = {distance}")
 
 def nearestRoute():
-    pass
+    canvas.delete("linea")
+
+    points = ordenPoints.copy()
+    NearestRoute_order = nearest.nearestBrute_route(points)
+    for i in range(len(NearestRoute_order) -1):
+        x = NearestRoute_order[i]; y = NearestRoute_order[i+1]
+        canvas.create_line(x, y, tags="linea")
+    
+    x_dist = x[0] - x[1] if x[0] - x[1] > 0 else (x[0] - x[1]) * -1
+    y_dist = y[0] - y[1] if y[0] - y[1] > 0 else (y[0] - y[1]) * -1
+    distance = x_dist + y_dist
+
+    lab_distance.config(text=f"Disntancia = {distance}")
+
+
 
 def clean():
     global ordenPoints
     ordenPoints = []
     canvas.delete("all")
+    lab_distance.config(text="Distancia = 0")
+
+def clean_linea():
+    canvas.delete("linea")
+    lab_distance.config(text="Distancia = 0")
 
 #**Main
 win = tkinter.Tk()
+win.title("Follow the points")
+
+
 
 tkinter.Label(win, text="Follow the points").grid(row=0, column=3)
+
+lab_distance = tkinter.Label(win, text="Distancia = 0")
+lab_distance.grid(row=0, column=4)
+
 
 orden_b = tkinter.Button(win, text="Orden", command=ordenRoute)
 orden_b.grid(row=2, column=0)
 
 nearest_b = tkinter.Button(win, text="Nearest", command=nearestRoute)
 nearest_b.grid(row=1, column=0)
+
+clean_b = tkinter.Button(win, text="Limpiar\nLineas", command=clean_linea)
+clean_b.grid(column=0, row=9)
 
 clean_b = tkinter.Button(win, text="Limpiar", command=clean)
 clean_b.grid(column=0, row=10)
