@@ -1,6 +1,7 @@
 import tkinter
 import nearest
 
+#? Faltan añadir mas algoritmos
 
 #**Variables
 ordenPoints = []
@@ -22,8 +23,10 @@ def draw_circle(event):
         canvas.create_text(x+2, y+tam_circl+5, text="End", fill="black", font=('Helvetica 10 bold'), tags="end")
 
     ordenPoints.append((x+tam_circl/2, y+tam_circl/2))
+    puntos.config(text=f"Puntos: {len(ordenPoints)}")
 
 def ordenRoute():
+    distance = 0
     canvas.delete("linea")
 
     for i in range(len(ordenPoints) -1):
@@ -32,24 +35,29 @@ def ordenRoute():
 
         x_dist = x[0] - x[1] if x[0] - x[1] > 0 else (x[0] - x[1]) * -1
         y_dist = y[0] - y[1] if y[0] - y[1] > 0 else (y[0] - y[1]) * -1
-        distance = x_dist + y_dist
+        distance += x_dist + y_dist
 
         lab_distance.config(text=f"Disntancia = {distance}")
 
 def nearestRoute():
+    distance = 0
     canvas.delete("linea")
 
     points = ordenPoints.copy()
-    NearestRoute_order = nearest.nearestBrute_route(points)
+    NearestRoute_order = nearest.nearestBrute_route(points[0:-1])
     for i in range(len(NearestRoute_order) -1):
         x = NearestRoute_order[i]; y = NearestRoute_order[i+1]
         canvas.create_line(x, y, tags="linea")
     
-    x_dist = x[0] - x[1] if x[0] - x[1] > 0 else (x[0] - x[1]) * -1
-    y_dist = y[0] - y[1] if y[0] - y[1] > 0 else (y[0] - y[1]) * -1
-    distance = x_dist + y_dist
+        x_dist = x[0] - x[1] if x[0] - x[1] > 0 else (x[0] - x[1]) * -1
+        y_dist = y[0] - y[1] if y[0] - y[1] > 0 else (y[0] - y[1]) * -1
+        distance += x_dist + y_dist
 
-    lab_distance.config(text=f"Disntancia = {distance}")
+
+    canvas.create_line(points[-1], NearestRoute_order[-1], tags="linea")
+
+
+    lab_distance.config(text=f"Distancia = {distance}")
 
 
 
@@ -69,7 +77,8 @@ win.title("Follow the points")
 
 
 
-tkinter.Label(win, text="Follow the points").grid(row=0, column=3)
+puntos = tkinter.Label(win, text="Puntos = 0")
+puntos.grid(row=0, column=2)
 
 lab_distance = tkinter.Label(win, text="Distancia = 0")
 lab_distance.grid(row=0, column=4)
