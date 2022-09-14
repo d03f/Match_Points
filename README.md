@@ -1,3 +1,10 @@
+<style>
+        .tab {
+            display: inline-block;
+            margin-left: 40px;
+        }
+    </style>
+
 # Match_Points
 <h1><b>Trabajo en python para colocar puntos y crear una ruta</b></h1>
 
