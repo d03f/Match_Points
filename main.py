@@ -40,9 +40,6 @@ def ordenRoute():
         distance += x_dist + y_dist
 
 
-        
-        
-
     lab_distance.config(text=f"Distancia = {distance}")
 
 def nearestRoute():
@@ -50,7 +47,8 @@ def nearestRoute():
     canvas.delete("linea")
 
     points = ordenPoints.copy()
-    NearestRoute_order = nearest.nearestBrute_route(points[:-1])
+    NearestRoute_order = nearest.nearestBrute_route(points)
+
 
     for i in range(len(NearestRoute_order) -1):
         n1 = NearestRoute_order[i]; n2 = NearestRoute_order[i+1]
@@ -61,13 +59,6 @@ def nearestRoute():
 
         distance += x_dist + y_dist
         
-    canvas.create_line(points[-1], NearestRoute_order[-1], tags="linea")
-    n1 = points[-1]; n2 = NearestRoute_order[-1]
-
-    x_dist = n1[0] - n2[0] if n1[0] - n2[0] > 0 else (n1[0] - n2[0]) * -1
-    y_dist = n1[1] - n2[1] if n1[1] - n2[1] > 0 else (n1[1] - n2[1]) * -1
-
-    distance += x_dist + y_dist
 
     lab_distance.config(text=f"Distancia = {distance}")
 
@@ -119,4 +110,3 @@ canvas.bind("<Button-1>", draw_circle)
 
 
 win.mainloop()
-
