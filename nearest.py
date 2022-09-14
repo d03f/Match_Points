@@ -15,7 +15,6 @@ def nearestBrute_Point(start, points):
         if min_dist == None or dist_total < min_dist: min_dist = dist_total; min_point = point
 
     return min_point
-    pass
 
 def nearestBrute_route(points):
     p_left = points
