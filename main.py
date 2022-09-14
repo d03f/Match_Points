@@ -5,7 +5,7 @@ win = tkinter.Tk()
 win.geometry("500x600")
 
 tkinter.Label(win, text="Follow the points")
-print("hola")
+
 
 
 points = [(2, 3), (-8, -9), (10, 11)]
