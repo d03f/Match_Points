@@ -19,15 +19,23 @@ def nearestBrute_Point(start, points):
 def nearestBrute_route(points):
     p_left = points
     order = [p_left.pop(0)]
+    end = p_left.pop(-1)
     
     for i in range(len(points)):
         next = nearestBrute_Point(order[i], p_left)
         p_left.remove(next)
         order.append(next)
-    return order
 
+    order.append(end)
+
+    return order 
+
+
+def bruteForce(points):
+    pass
 
 #? How to
-#points = [(2, 3), (-8, -9), (10, 11)]
+#points = [(2, 3), (-8, -9), (2, 3)]
 #start = [(0,0)]
 #route = nearestBrute_route(start + points)
+#print(route)
