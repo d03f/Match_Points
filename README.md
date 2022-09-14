@@ -10,7 +10,8 @@
 
 La idea es hacer una interfaz en al que puedes colocar puntos, y mediante diferentes algoritmos buscar cual es la ruta mas rapida para recorrerlos todos
 
+<p>
 Los algoritmos implementados hasta ahora son:<br>
     -Nearest:<br>
-    <p>·Buscar el más cercano mediante recorrer todos<br></p>
-    <p>·Buscar el mas cercano utilizando una "onda"<br></p>
+        <span class="tab"></span>·Buscar el más cercano mediante recorrer todos<br>
+        <span class="tab"></span>·Buscar el mas cercano utilizando una "onda"<br></p>
