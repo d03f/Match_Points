@@ -1,4 +1,5 @@
 def dist(x1, y1, x2, y2):
+    print("Hola")
     x_dist = x1 - x2 if x1 - x2 > 0 else (x1 - x2) * -1
     y_dist = y1 - y2 if y1 - y2 > 0 else (y1 - y2) * -1
 
