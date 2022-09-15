@@ -6,7 +6,9 @@ La idea es hacer una interfaz en al que puedes colocar puntos, y mediante difere
 
 <p>
 Los algoritmos implementados hasta ahora son:<br>
-    -Nearest:<br/>
+    <h3>-Nearest</h3>
         &emsp;·Buscar el más cercano calculando todos<br/>
         &emsp;·Buscar el mas cercano utilizando una "onda"
-    <h3>-Shortest
+    <h3>-Shortest</h3>
+        &emsp;&emsp;Interpretacion de Dijkstra.
+        Apuntar en un diccionario todos los puntos. Empezar y buscar mediante onda los más cercanos. Apuntar en el diccionario cuanta distancia hay entre           los puntos y cual ha sido el recorrido utilizado. Priorizar las rutas mas cortas 
