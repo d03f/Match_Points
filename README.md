@@ -7,6 +7,6 @@ La idea es hacer una interfaz en al que puedes colocar puntos, y mediante difere
 <p>
 Los algoritmos implementados hasta ahora son:<br>
     -Nearest:<br/>
-        ·Buscar el más cercano calculando todos
+          ·Buscar el más cercano calculando todos<br/>
         ·Buscar el mas cercano utilizando una "onda"
     <h3>-Shortest
