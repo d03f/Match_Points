@@ -7,7 +7,7 @@ def distance(x1, y1, x2, y2):
 
     return x_dist, y_dist
 
-def nearestWave(point, points, dist):
+def nearestWave(point, points, dist, end):
     x1, y1 = point
     nearPoints = []
     distan = dist
@@ -17,18 +17,18 @@ def nearestWave(point, points, dist):
             nowX, nowY = point
             x_bool = False; y_bool = False
 
-            if x1 - nowX < distan and x1 - nowX > -distan:
-                x_bool = True
-            if y1 - nowY < distan and y1 - nowY > -distan:
-                y_bool = True
-            
+            x_dist = x1 - nowX if x1 - nowX > 0 else (x1 - nowX) * -1
+            y_dist = y1 - nowY if y1 - nowY > 0 else (y1 - nowY) * -1
+
+            if x_dist < distan: x_bool = True
+            if y_dist < distan: y_bool = True
+
             if x_bool and y_bool:
                 nearPoints.append(point)
-
         if len(nearPoints) == 0: distan += dist
         else:break
     
-
+    if end in nearPoints:return end
     return random.choice(nearPoints)
 
         
@@ -58,7 +58,7 @@ def nearestBrute_route(points):
 
     order.append(end)
     return order
-
+#Y mas cercana 
 
 def nearestBrute_short(points):
     p_left = points.copy()
@@ -80,7 +80,7 @@ def nearestWeave_short(points, dist):
     end = p_left[-1]    
 
     for i in range(len(points)):    
-        next = nearestWave(order[i], p_left, dist)
+        next = nearestWave(order[i], p_left, dist, end)
         p_left.remove(next)    
 
         order.append(next)
@@ -97,4 +97,3 @@ def bruteForce(points):
 #start = [(0,0)]
 #route = nearestBrute_route(start + points)
 #print(route)
-

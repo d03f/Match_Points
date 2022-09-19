@@ -10,6 +10,10 @@ import nearest
 ordenPoints = []
 tam_circl = 10
 
+dict_points = {}
+letters = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz"
+
+
 #**Funciones
 def draw_circle(event):
     x = event.x
@@ -26,6 +30,8 @@ def draw_circle(event):
         canvas.create_text(x+2, y+tam_circl+5, text="End", fill="black", font=('Helvetica 10 bold'), tags="end")
 
     ordenPoints.append((x+tam_circl/2, y+tam_circl/2))
+    dict_points[f"Punto{len(ordenPoints)}"] = (x+tam_circl/2, y+tam_circl/2)
+
     puntos.config(text=f"Puntos: {len(ordenPoints)}")
 
 def ordenRoute():
@@ -33,7 +39,6 @@ def ordenRoute():
     canvas.delete("linea")
 
     s_time = process_time_ns()
-    
 
     for i in range(len(ordenPoints) -1):
         n1 = ordenPoints[i]; n2 = ordenPoints[i+1]
@@ -57,8 +62,6 @@ def nearestRoute():
 
     points = ordenPoints.copy()
     NearestRoute_order = nearest.nearestBrute_route(points)
-
-    print(NearestRoute_order)
 
     for i in range(len(NearestRoute_order) -1):
         n1 = NearestRoute_order[i]; n2 = NearestRoute_order[i+1]
